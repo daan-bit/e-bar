@@ -12,8 +12,13 @@ html{
     height: 100vh;
     width: 100%;
     font-family: 'Raleway', sans-serif;
-    color: white;
+    color: #eee;
     font-size: 1.8rem;
+}
+
+button{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
 }
 
 .main{
@@ -84,12 +89,9 @@ html{
     width: 90%;
     height: 8rem;
     position: relative;
+    animation-name: fade-in;
+    animation-duration: 2s;
 }
-
-/* .list__listItem:hover{
-    cursor: pointer;
-    background-color: #eee;
-} */
 
 .listItem__overlay{
     width: 100%;
@@ -129,5 +131,86 @@ html{
 .listItem__text{
     font-weight: 400;
     font-size: 3.5rem;
+}
 
+.main__optionMenu{
+    height: 8rem;
+    width: 100%;
+    background-color: #202020;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+}
+
+.optionMenu__buttonContainer{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.buttonContainer__button{
+    padding: 1.2rem 2.5rem;
+    font-size: 1.8rem;
+    background-color: #73377E;
+    color: #eee;
+    border-style: none;
+}
+
+.buttonContainer__button:active{
+    background-color: #9e4cad;
+}
+
+/* pagina frisdrank kiezen */
+
+.fris{
+    justify-content: space-between;
+}
+
+.ghost{
+    border: 0.2rem solid #73377E;
+    box-shadow: inset 0px 0px 0px 0.1rem #73377E;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+.klaar{
+    background-color: #16DB65;
+    padding: 1.2rem 2.8rem;
+}
+
+.klaar:active{
+    background-color: #48ed8a;
+}
+
+.listItem__logo--geen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo__figure--geen{
+    border: 0.1rem solid #eee;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    border-style: dashed;
+}
+
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+        transform: translateY(-40%);
+    }
+    75%{
+        transform: translateY(0%);
+    }
+    100%{
+        opacity: 1;
+    }
 }
