@@ -15,6 +15,8 @@
     <main class="main">
         <div class="main__overlay"></div>
         <article class="main__article">
+            <div class="main__maakKeuze" id="error">Maak een keuze</div>
+
             <section class="article__keuzeTitleWrapper">
                 <h2 class="keuzeTitleWrapper__keuzeTitle">Kies uw frisdrank</h2>
             </section>
@@ -40,28 +42,16 @@
                                 <img src="./img/fanta.png" alt="Logo fanta" class="figure__img">
                             </figure>
                         </div>
-                        <h2 class="listItem__text">Fanta</h2>
+                        <h2 class="listItem__text">Sinas</h2>
                     </section>
                     
-                </li>
-                <li class="list__listItem" onclick="changeBg(this)">
-                    <div class="listItem__overlay"></div>
-                    <section class="listItem__content">
-                        <div class="listItem__logo listItem__logo--geen">
-                            <figure class="logo__figure logo__figure--geen">
-                            X
-                            </figure>
-                        </div>
-                        <h2 class="listItem__text">Geen</h2>
-                    </section>
-                    
-                </li>               
+                </li>            
             </ul>
 
             <footer class="main__optionMenu">
                 <section class="optionMenu__buttonContainer fris">
                     <button class="buttonContainer__button ghost"  onclick="location.href='kiesDrank.html'">Vorige</button>
-                    <button class="buttonContainer__button klaar" onclick="location.href='laden.html'">Klaar</button>
+                    <button class="buttonContainer__button klaar" onclick="check('fris')">Klaar</button>
                     
                 </section>
             </footer>
