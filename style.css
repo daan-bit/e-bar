@@ -16,6 +16,10 @@ html{
     font-size: 1.8rem;
 }
 
+:root {
+    --fill: red;
+}
+
 button{
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
@@ -52,6 +56,10 @@ button{
     font-size: 6rem;
     font-weight: 400;
 }
+
+
+
+
 
 /* Pagina drank kiezen */
 .main__article{
@@ -126,6 +134,7 @@ button{
     width: 100%;
     height: 100%;
     object-fit: scale-down;
+    filter: drop-shadow(grey 0.2rem 0.4rem 0.8rem);
 }
 
 .listItem__text{
@@ -163,6 +172,10 @@ button{
     background-color: #9e4cad;
 }
 
+
+
+
+
 /* pagina frisdrank kiezen */
 
 .fris{
@@ -192,7 +205,7 @@ button{
 }
 
 .logo__figure--geen{
-    border: 0.1rem solid #eee;
+    border: 0.2rem solid #eee;
     width: 80%;
     height: 80%;
     display: flex;
@@ -214,3 +227,70 @@ button{
         opacity: 1;
     }
 }
+
+
+
+
+
+/* pagina laden */
+.body--laden{
+    height: 100vh;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+    color: #eee;
+    font-size: 1.8rem;
+    background-image: url("./img/achtergrond.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body__overlay--laden{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #202020;
+    opacity: 0.4;
+}
+
+.body__box{
+    width:200px;
+    height:200px;
+    border:10px solid #ccc;
+    border-radius:10px;
+    line-height:200px;
+    text-align:center;
+    color:#ddd;
+    font-size:25px;
+    font-weight:600;
+    text-transform:uppercase;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .body__box:before {
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:var(--fill);
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:40%;
+    animation:fill 7s ease-in-out infinite;
+    z-index:1;
+  }
+
+  @keyframes fill {
+    from {
+      top:250px;
+      transform:translateX(-50%) rotate(0deg);
+    }
+    to {
+      top:-50px;
+      transform:translateX(-50%) rotate(360deg);
+    }
+  }
