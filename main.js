@@ -36,15 +36,15 @@ function check(pagina){
         
     }else{
         const error = document.getElementById("error");
-        error.style.display = "flex";
-        setTimeout(closeError, 1500);
+        error.style.transform = "translateY(0rem)";
+        setTimeout(closeError, 1500);      
     }
 
 }
 
 function closeError(){
     const error = document.getElementById("error");
-    error.style.display = "none";
+    error.style.transform = "translateY(-15rem)";
 }
 
 //Gekozen drank opslaan in local storage

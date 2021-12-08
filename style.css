@@ -46,9 +46,8 @@ button{
     align-items: center;
     font-size: 3.5rem;
     z-index: 1;
-    animation-name: error;
-    animation-duration: 0.5s;
-    display: none;
+    transform: translateY(-15rem);
+    transition: 1s all;
 }
 
 .main__overlay{
@@ -288,10 +287,10 @@ button{
 
   @keyframes error{
       0%{
-          transform: translateY(-40%);
+          transform: translateY(-15rem);
       }
       100%{
-          transform: translateY(0%);
+          transform: translateY(0rem);
       }
   }
 
