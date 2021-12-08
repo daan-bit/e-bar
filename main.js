@@ -37,7 +37,7 @@ function check(pagina){
     }else{
         const error = document.getElementById("error");
         error.style.display = "flex";
-        setTimeout(closeError, 1000);
+        setTimeout(closeError, 1500);
     }
 
 }
@@ -56,6 +56,12 @@ function setDrank(item){
 //Gekozen frisdrank opslaan in local storage
 function setFris(item){
     let fris = item.childNodes[3].textContent.trim();
+    localStorage.setItem("fris", fris);
+}
+
+//Gekozen mix opslaan in local storage
+function setMix(drank, fris){
+    localStorage.setItem("drank", drank);
     localStorage.setItem("fris", fris);
 }
 
