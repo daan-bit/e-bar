@@ -30,7 +30,11 @@ function check(pagina){
     if(doorgaan === true){
         if(pagina == 'drank'){
             window.location = "kiesFris.html";
-        }else{
+        }else if(pagina == 'shot'){
+            localStorage.setItem("fris", "");
+            window.location = "laden.html";
+        }
+        else{
             window.location = "laden.html";
         }
         

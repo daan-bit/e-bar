@@ -17,7 +17,7 @@ html{
 }
 
 :root {
-    --fill: red;
+    --fill: rgba(238, 238, 238, 0.4);
 }
 
 button{
@@ -198,6 +198,10 @@ button{
     justify-content: space-between;
 }
 
+.shot{
+    justify-content: flex-end;
+}
+
 .ghost{
     border: 0.2rem solid #73377E;
     box-shadow: inset 0px 0px 0px 0.1rem #73377E;
@@ -213,6 +217,7 @@ button{
 .klaar:active{
     background-color: #48ed8a;
 }
+
 
 
 
