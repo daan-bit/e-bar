@@ -272,6 +272,7 @@ button{
     border-radius:40%;
     animation:fill 6s ease-in-out infinite;
     z-index:1;
+    filter: opacity(0.9);
   }
 
 
