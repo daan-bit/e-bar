@@ -24,6 +24,43 @@ function changeBg(item){
     
 }
 
+//Gekozen drank opslaan in local storage
+function setDrank(item){
+    let drank = item.childNodes[3].textContent.trim();
+    localStorage.setItem("drank", drank);
+}
+
+//Gekozen frisdrank opslaan in local storage
+function setFris(item){
+    let fris = item.childNodes[3].textContent.trim();
+    localStorage.setItem("fris", fris);
+}
+
+//Gekozen mix opslaan in local storage
+function setMix(drank, fris){
+    localStorage.setItem("drank", drank);
+    localStorage.setItem("fris", fris);
+}
+
+function randomMix(){
+    let dranken = ["Bacardi", "Malibu", "Vodka", "Rocket"];
+    let frissen = ["Cola", "Sinas"];
+
+    let randomDrank = Math.floor(Math.random() * dranken.length);
+    let randomFris = Math.floor(Math.random() * frissen.length)
+
+    let drank = dranken[randomDrank];
+    let fris = frissen[randomFris];
+
+    localStorage.setItem("drank", drank);
+    localStorage.setItem("fris", fris);
+
+    doSend(JSON.stringify({device: "web", drink: drank.substring(0,2), soda: fris.substring(0,2)}));
+
+    window.location = "laden";
+
+}
+
 //Checkt of er een keuze is gemaakt
 function check(pagina){
     
@@ -66,23 +103,6 @@ function closeError(){
     error.style.transform = "translateY(-15rem)";
 }
 
-//Gekozen drank opslaan in local storage
-function setDrank(item){
-    let drank = item.childNodes[3].textContent.trim();
-    localStorage.setItem("drank", drank);
-}
-
-//Gekozen frisdrank opslaan in local storage
-function setFris(item){
-    let fris = item.childNodes[3].textContent.trim();
-    localStorage.setItem("fris", fris);
-}
-
-//Gekozen mix opslaan in local storage
-function setMix(drank, fris){
-    localStorage.setItem("drank", drank);
-    localStorage.setItem("fris", fris);
-}
 
 //Veranderd tekst en kleur in box naar gekozen frisdrank
 function changeText(){
@@ -94,6 +114,7 @@ function changeText(){
     box.innerText = charDrank + charFris; 
 
     let soort = localStorage.getItem("fris");
+    console.log(soort);
     
     //Veranderd kleur in fill naar soort frisdrank
     if(soort === "Sinas"){
