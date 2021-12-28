@@ -1,6 +1,6 @@
 let doorgaan = false;
 
-//Selecteren van drank of frisdrank
+//Selecteren van drank of frisdrank - veranderd achtergrond
 function changeBg(item){
 
     let list = document.querySelectorAll(".list__listItem");
@@ -12,10 +12,11 @@ function changeBg(item){
     
     let child = item.children[0];
     child.style.backgroundColor = "#eee";
+    //dorogaan wordt op true gezet, zodat gebruiker naar de volgende pagina kan
     doorgaan = true;
 
 
-    //Opslaan in van soort drank of frisdrank in local storage
+    //Opslaan van soort drank of frisdrank in local storage
     if(item.childNodes[3].textContent.trim() === "Sinas" || item.childNodes[3].textContent.trim() === "Cola"){
         setFris(item);
     }else{
@@ -42,6 +43,8 @@ function setMix(drank, fris){
     localStorage.setItem("fris", fris);
 }
 
+//Wordt uitgevoerd wanneer random button wordt ingedrukt.
+//Kiest willekeurig drank en frisdrank 
 function randomMix(){
     let dranken = ["Bacardi", "Malibu", "Vodka", "Rocket"];
     let frissen = ["Cola", "Sinas"];
@@ -52,15 +55,18 @@ function randomMix(){
     let drank = dranken[randomDrank];
     let fris = frissen[randomFris];
 
+    //Opslaan van drank en frisdrank in local storage
     localStorage.setItem("drank", drank);
     localStorage.setItem("fris", fris);
 
+    //Versturen van drank en frisdrank naar ESP
     doSend(JSON.stringify({device: "web", drink: drank.substring(0,2), soda: fris.substring(0,2)}));
 
     window.location = "laden";
 
 }
 
+//Wordt aangeroepen zodra op volgende of klaar wordt geklikt
 //Checkt of er een keuze is gemaakt
 function check(pagina){
     
@@ -91,6 +97,7 @@ function check(pagina){
         }
         
     }else{
+        //Geeft melding dat geen keuze gemaakt is
         const error = document.getElementById("error");
         error.style.transform = "translateY(0rem)";
         setTimeout(closeError, 1500);      
@@ -98,6 +105,7 @@ function check(pagina){
 
 }
 
+//Sluiten van de error
 function closeError(){
     const error = document.getElementById("error");
     error.style.transform = "translateY(-15rem)";
@@ -127,7 +135,7 @@ function changeText(){
 
 
 //##########################################################################
-//##########################################################################
+// Alle code behorend bij de websockets ####################################
 //##########################################################################
 
 const url = "ws://192.168.4.1:1337/";
@@ -136,6 +144,7 @@ window.addEventListener('load', (event)=> {
     wsConnect(url);
 });
 
+//Verbinden met server
 function wsConnect(url){
 
     websocket = new WebSocket(url);
@@ -146,23 +155,26 @@ function wsConnect(url){
     websocket.onerror = function(evt) { onError(evt) };
 }
 
+//Als client verbind
 function onOpen(evt) {
     console.log("Connected");
 }
 
+//Als client niet meer verbonden is
 function onClose(evt) {
     console.log("Disconnected");
      
-    // Try to reconnect after a few seconds
+    // Proberen opnieuw te verbinden na een aantal seconden
     setTimeout(function() { wsConnect(url) }, 2000);
 }
 
+//Als er een bericht binnenkomt
 function onMessage(evt) {
 
-    // Print out our received message
+    //Print het binnengekomen bericht
     console.log("Received: " + evt.data);
     
-    // Update circle graphic with LED state
+    //Switch case voor binnengekomen bericht
     switch(evt.data) {
         case "0":
             console.log("Naar afgehandeld pagina");
@@ -175,21 +187,14 @@ function onMessage(evt) {
     }
 }
 
-// Called when a WebSocket error occurs
+//Als er een error is
 function onError(evt) {
     console.log("ERROR: " + evt.data);
 }
 
+//Versturen van bericht naar ESP
 function doSend(message) {
     console.log("Sending: " + message);
     websocket.send(message);
 }
 
-
-//###################################################################
-//###################################################################
-
-function raspberry(){
-    console.log("Verstuur raspberry pi");
-    doSend(JSON.stringify({device: "raspberry", inhoud: "250"}));
-}
