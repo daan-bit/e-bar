@@ -134,6 +134,16 @@ function changeText(){
 }
 
 
+//Game kingsen
+function gotKing(){
+    doSend(JSON.stringify({ device: "king", reset: false }));
+}
+
+function resetGame(){
+    doSend(JSON.stringify({ device: "king", reset: true }));
+}
+
+
 //##########################################################################
 // Alle code behorend bij de websockets ####################################
 //##########################################################################
@@ -158,6 +168,11 @@ function wsConnect(url){
 //Als client verbind
 function onOpen(evt) {
     console.log("Connected");
+    // let sstr = window.location.href.substring(window.location.href - 2); // Get the last 2 characters
+    // if (sstr == "ki") {
+    //     console.log("Kingsen!!");
+    //     websocket.send(JSON.stringify({ device: 'iking' }));
+    // }
 }
 
 //Als client niet meer verbonden is
@@ -178,10 +193,23 @@ function onMessage(evt) {
     switch(evt.data) {
         case "0":
             console.log("Naar afgehandeld pagina");
+            window.location = "/afgehandeld";
+            break;
         case "1":
             console.log("Naar foutmelding pagina");
+            window.location = "/foutmelding";
+            break;
+        case "home":
+            console.log("Naar home pagina");
+            window.location = "/";
+            break;
+        case "shot":
+            console.log("Naar kiesShot pagina");
+            window.location = "/kiesShot";
+            break;
         case "redirect":
             window.location = "/keuzeMenu";
+            break;
         default:
             break;
     }
